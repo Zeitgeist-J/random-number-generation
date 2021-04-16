@@ -58,7 +58,7 @@ const simulateCentralSquares = (k = 0, seed = 0, stopWhenRepeated = true, maxIte
     const squareMiddle = getMiddleNumber(square);
     const squarePercentage = squareMiddle / m;
     res.push([square, squareMiddle, squarePercentage]);
-  } while ((stopWhenRepeated && !hasUniqueValues(res)) || res.legth === maxIterations);
+  } while (((stopWhenRepeated && hasUniqueValues(res)) || !stopWhenRepeated) && res.length <= maxIterations);
 
   return res;
 };

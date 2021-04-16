@@ -32,7 +32,7 @@ const simulatesMixCongruential = (
     const _module = axc % M;
     const rm = _module / m;
     res.push([axc, _module, rm]);
-  } while ((stopWhenRepeated && !hasUniqueValues(res)) || res.legth === maxIteraciones);
+  } while (((stopWhenRepeated && hasUniqueValues(res)) || !stopWhenRepeated) && res.length <= maxIteraciones);
 
   return res;
 };

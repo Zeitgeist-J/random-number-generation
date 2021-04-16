@@ -2,6 +2,13 @@ const _k = 3;
 const _seed0 = 304;
 const _seed1 = 512;
 
+const hasUniqueProducts = (arr) => (
+  arr.reduce((acc, el, i, _this) => {
+    const index = _this.findIndex((val) => val[0] === el[0]);
+    return acc && (index === i);
+  }, true)
+);
+
 const getKMiddleNumber = (k) => (number) => {
   const numberString = number.toString(10);
 
@@ -33,7 +40,7 @@ const getProducts = (...numbers) => numbers.reduce((acc, el) => acc * el);
  * @return {Array} res The historical values
  *
 */
-const simulateWithCentralProducts = (k = 0, seed0 = 0, seed1 = 0, maxIterations = 15) => {
+const simulateWithCentralProducts = (k = 0, seed0 = 0, seed1 = 0, stopWhenRepeated = true, maxIterations = 30) => {
   const m = 10 ** k;
 
   // creates custom functions for received K
@@ -56,7 +63,7 @@ const simulateWithCentralProducts = (k = 0, seed0 = 0, seed1 = 0, maxIterations 
     const productMiddle = getMiddleNumber(product);
     const productPercentage = productMiddle / m;
     res.push([product, productMiddle, productPercentage]);
-  } while (res.length === maxIterations);
+  } while (((stopWhenRepeated && hasUniqueProducts(res)) || !stopWhenRepeated) && res.length <= maxIterations);
 
   return res;
 };
