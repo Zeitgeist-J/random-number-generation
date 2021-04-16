@@ -1,15 +1,25 @@
+const { hasUniqueValuesFunction } = require('./utils');
+
 const _x0 = 73; // semilla
 const _a = 65; // const multiplicativa
 const _c = 14; // const aditiva
 const _M = 92; // modulo
 
-const hasUniqueValues = (arr) => (
-  arr.reduce((acc, el, i, _this) => {
-    const index = _this.findIndex((val) => val[1] === el[1]);
-    return acc && (index === i);
-  }, true)
-);
+const hasUniqueValues = hasUniqueValuesFunction((el) => (val) => val[1] === el[1]);
 
+
+/*
+ * Simulates using the mix congruential method
+ * @param {number} x0 The seed value
+ * @param {number} a The multiplicative constant
+ * @param {number} c The additive constant
+ * @param {number} M The module to reduce the number
+ * @param {boolean} stopWhenRepeated Stops the simulation if a repeated value appears, default true
+ * @param {number} maxIterations Max number of iteractions, default 100
+ *
+ * @return {Array} res The historical values
+ *
+*/
 const simulatesMixCongruential = (
   x0 = 0,
   a = 0,

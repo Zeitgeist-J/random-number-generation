@@ -1,31 +1,9 @@
+const { addZeroIfRequired, getKMiddleNumber, hasUniqueValuesFunction } = require('./utils');
+
 const _k = 3;
 const _seed = 304;
 
-const hasUniqueValues = (arr) => (
-  arr.reduce((acc, el, i, _this) => {
-    const index = _this.findIndex((val) => val[1] === el[1]);
-    return acc && (index === i);
-  }, true)
-);
-
-const getKMiddleNumber = (k) => (number) => {
-  const numberString = number.toString(10);
-
-  const startPoint = Math.floor(numberString.length / 2);
-  const jumps = Math.floor(k / 2);
-  const isEvent = numberString.length % 2 === 0;
-  return Number(
-    numberString.substring(
-      startPoint - (jumps - (isEvent ? 1 : 0)),
-      startPoint + jumps + 1
-    )
-  );
-};
-
-const addZeroIfRequired = (k) => (number) => {
-  const isRequired = (number.toString(10).length % 2) !== (k % 2);
-  return number * (isRequired ? 10 : 1);
-};
+const hasUniqueValues = hasUniqueValuesFunction((el) => (val) => val[1] === el[1]);
 
 const getSquare = (number) => number ** 2;
 

@@ -2,31 +2,16 @@ const _k = 3;
 const _seed0 = 304;
 const _seed1 = 512;
 
-const hasUniqueProducts = (arr) => (
-  arr.reduce((acc, el, i, _this) => {
-    const index = _this.findIndex((val) => val[0] === el[0]);
-    return acc && (index === i);
-  }, true)
-);
+const { addZeroIfRequired, getKMiddleNumber, hasUniqueValuesFunction } = require('./utils');
 
-const getKMiddleNumber = (k) => (number) => {
-  const numberString = number.toString(10);
+const hasUniqueProducts = hasUniqueValuesFunction((el) => (val) => val[0] === el[0]);
 
-  const startPoint = Math.floor(numberString.length / 2);
-  const jumps = Math.floor(k / 2);
-  const isEvent = numberString.length % 2 === 0;
-  return Number(
-    numberString.substring(
-      startPoint - (jumps - (isEvent ? 1 : 0)),
-      startPoint + jumps + 1
-    )
-  );
-};
-
-const addZeroIfRequired = (k) => (number) => {
-  const isRequired = (number.toString(10).length % 2) !== (k % 2);
-  return number * (isRequired ? 10 : 1);
-};
+// const hasUniqueProducts = (arr) => (
+//   arr.reduce((acc, el, i, _this) => {
+//     const index = _this.findIndex((val) => val[0] === el[0]);
+//     return acc && (index === i);
+//   }, true)
+// );
 
 const getProducts = (...numbers) => numbers.reduce((acc, el) => acc * el);
 
