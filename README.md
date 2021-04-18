@@ -6,7 +6,7 @@ System requirements:
   - nodeJS. LTS is preferred
   - npm. 6 - 7
 
-__Before running any funtion, you must run `npm install` o `npm i`__
+__Before running any funtion, you must run `npm install` or `npm i`__
 
 This repo contains three functions to generate pseudo random numbers:
 
