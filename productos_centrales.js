@@ -56,7 +56,6 @@ const simulateWithCentralProducts = (_k, _seed0, _seed1, stopIfRepeated = true, 
     [_seed1, _seed1, _seed1 / m]
   ];
 
-  // eslint-disable-next-line no-constant-condition
   do {
     const resCopy = [...res];
     const prev0 = resCopy.pop()[1];
