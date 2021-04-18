@@ -35,7 +35,7 @@ $ node cuadrados_centrales.js --seed 304 -k 3 --stopWhenRepeated 0 --maxIteratio
 $ node cuadrados_centrales.js -s 501 -k 3
  ```
 
-## 2. Central Squares
+## 2. Central Products
 
 This function iterates taking k central numbers from the iteration's product, it can be ran by executing:
 
