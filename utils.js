@@ -1,3 +1,5 @@
+module.exports.params = require('yargs')(process.argv.slice(2)).argv;
+
 module.exports.getKMiddleNumber = (k) => (number) => {
   const numberString = number.toString(10);
 
