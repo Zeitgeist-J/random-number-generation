@@ -1,12 +1,31 @@
-const { hasUniqueValuesFunction } = require('./utils');
+const { hasUniqueValuesFunction, params } = require('./utils');
 
-const _x0 = 73; // semilla
-const _a = 65; // const multiplicativa
-const _c = 14; // const aditiva
-const _M = 92; // modulo
+const {
+  seed,
+  a,
+  c,
+  m,
+  stopWhenRepeated,
+  maxIterations
+} = params;
+
+if (!seed || !a || !c || !m) {
+  console.warn('One parameter was dismissed');
+  process.exit(1);
+}
+
+if (
+  (!Number(seed))
+  || (!Number(a))
+  || (!Number(c))
+  || (!Number(m))
+  || (maxIterations && !Number(maxIterations) && Number(maxIterations) < 0)
+) {
+  console.warn('One parameter was wrongly provided');
+  process.exit(2);
+}
 
 const hasUniqueValues = hasUniqueValuesFunction((el) => (val) => val[1] === el[1]);
-
 
 /*
  * Simulates using the mix congruential method
@@ -20,32 +39,28 @@ const hasUniqueValues = hasUniqueValuesFunction((el) => (val) => val[1] === el[1
  * @return {Array} res The historical values
  *
 */
-const simulatesMixCongruential = (
-  x0 = 0,
-  a = 0,
-  c = 0,
-  M = 1,
-  stopWhenRepeated = true,
-  maxIteraciones = 100
-) => {
-  const m = 10 ** M.toString().length;
+const simulatesMixCongruential = (x0, _a, _c, M, stopIfRepeated = true, maxIt = 100) => {
+  const _m = 10 ** M.toString().length;
 
   // initial values
   const res = [
     ['aX + c', 'mod M', '/m'],
-    [0, x0, x0 / m]
+    [0, x0, x0 / _m]
   ];
 
   do {
     const prev = [...res].pop()[1];
-    const axc = (a * prev) + c;
+    const axc = (_a * prev) + _c;
     const _module = axc % M;
-    const rm = _module / m;
+    const rm = _module / _m;
     res.push([axc, _module, rm]);
-  } while (((stopWhenRepeated && hasUniqueValues(res)) || !stopWhenRepeated) && res.length <= maxIteraciones);
+  } while (
+    ((stopIfRepeated && hasUniqueValues(res)) || !stopIfRepeated)
+    && (res.length - 1) <= maxIt
+  );
 
   return res;
 };
 
-const resultTable = simulatesMixCongruential(_x0, _a, _c, _M);
+const resultTable = simulatesMixCongruential(seed, a, c, m, stopWhenRepeated, maxIterations);
 console.table(resultTable);
