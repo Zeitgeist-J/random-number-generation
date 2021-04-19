@@ -22,7 +22,7 @@ if (
   (!Number(seed1) && (Number(seed1) === 0))
   || (!Number(seed2) && (Number(seed2) === 0))
   || (maxIterations && !Number(maxIterations) && Number(maxIterations) < 0)
-  || (!Number(k) && (Number(k) > 0))
+  || (!Number(k) && (Number(k) < 0))
 ) {
   console.warn('One parameter was wrongly provided');
   process.exit(2);
