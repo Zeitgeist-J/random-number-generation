@@ -56,7 +56,7 @@ $ node productos_centrales.js
 #### Example
 
  ```bash
-$ node productos_centrales.js --seed1 304 --seed 512 -k 3 --stopWhenRepeated 0 --maxIterations 150
+$ node productos_centrales.js --seed1 304 --seed2 512 -k 3 --stopWhenRepeated 0 --maxIterations 150
 
 $ node productos_centrales.js --seed1 501 --seed2 273 -k 3
  ```
